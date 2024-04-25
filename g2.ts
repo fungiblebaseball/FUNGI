@@ -1,7 +1,8 @@
 import { inning } from "./utils/types.ts";
 import { actInning } from "./actions/actinning.ts"
 import { Team } from "./utils/class.ts";
-// Example:
+
+// Teams Attributes for TEST
 const TeamA = new Team("Team A", 40, 50, 50, 50);
 const TeamB = new Team("Team B", 40, 40, 50, 50);
 

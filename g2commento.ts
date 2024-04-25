@@ -2,7 +2,7 @@ import { inning, score } from "./utils/types.ts";
 import { actInning } from "./actions/actinning.ts"
 import { Team } from "./utils/class.ts";
 
-// Esempio di utilizzo
+// Teams Attributes for TEST
 const TeamA = new Team("Team A", 30, 40, 50, 50);
 const TeamB = new Team("Team B", 30, 40, 50, 50);
 
