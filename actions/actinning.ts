@@ -1,16 +1,16 @@
-import { Squadra } from "../utils/class";
+import { Team } from "../utils/class";
 import { inning, base,trajectory } from "../utils/types";
 import { bat } from "./bat.ts";
 import { inplay } from "./inplay.ts";
 import { loadBase , lob} from "./base.ts";
 
-export function actInning(squadraAttacco: Squadra, squadraDifesa: Squadra):inning  {
+export function actInning(BattingTeam: Team, TeamFielders: Team):inning  {
     let out = 0;
     let b: base ={1:false,2:false,3:false};
     let inn: inning ={ s:0,h:0,e:0,k:0,b:0,po:0,fo:0,lob:0 };
     while (out < 3) {
-        console.log("In attacco:",squadraAttacco.nome, "out:",out);
-        let play = bat(squadraAttacco.battitore, squadraDifesa.lanciatore);
+        console.log("In attacco:",BattingTeam.Name, "out:",out);
+        let play = bat(BattingTeam.Batter, TeamFielders.Pitcher);
         if (typeof play === 'number') {
         switch (play) {
             case 0:                       //////////////    K
@@ -18,14 +18,14 @@ export function actInning(squadraAttacco: Squadra, squadraDifesa: Squadra):innin
                 inn.k++;//console.log("lob",inn.lob);                
                 break;
 
-            case 2:                        /////////////   BaseBall
+            case 2:                        /////////////   Base on Ball
                     let[anb, asc] = loadBase(b, 1);
                     b=anb; inn.s=inn.s+asc; inn.b++; //console.log("lob",b);               
                 break;
             } 
         } 
         else if (Array.isArray(play) && typeof play[0] === 'number' ){
-                // Se play è una tupla che contenente un numero 
+                // If play = tuple that include a num 
                 const num = play[0];
                 const trajectoryData :trajectory = play[1];
                 //console.log(trajectoryData);
@@ -40,7 +40,7 @@ export function actInning(squadraAttacco: Squadra, squadraDifesa: Squadra):innin
                 break;
 
             case 1:                         // /////////    IN PLAY
-                let g = inplay(squadraAttacco.attacco,squadraDifesa.difesa,trajectoryData) 
+                let g = inplay(BattingTeam.Batter,TeamFielders.Fielder,trajectoryData) 
                 
                 switch (g) {
                     case 5:                 //////////////  HIT
@@ -66,7 +66,7 @@ export function actInning(squadraAttacco: Squadra, squadraDifesa: Squadra):innin
             
             default:
                 console.log ("error"); 
-                break;      // Gestione caso non previsto          
+                break;      // Exceptions     
         }
     } 
     console.log("runs",inn.s,"out",out,"lob ",lob(b));

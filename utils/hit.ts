@@ -1,15 +1,13 @@
+// This Function generate the HIT 
 import { trajectory } from "./types";
 export function hit(attrib: number): trajectory {
-    // Decidi se la palla è al volo o a terra
-    const t :string = Math.random() < 0.5 ? "GroundBall" : "FlyBall";
-    const b :boolean = t === "FlyBall";
-    // Genera un numero casuale per la destinazione
-    const Loc :number = Math.floor(Math.random() * 9) + 1;
+     
+    const t :string = Math.random() < 0.5 ? "GroundBall" : "FlyBall";   // The hit is a ground ball or a fly ball
+    const b :boolean = t === "FlyBall";    
+    const Loc :number = Math.floor(Math.random() * 9) + 1;              // Randomize the location, whitch fielder is involved
     let traj :trajectory = {B:b, T:t, L:Loc};
     let event = '';
-
-    // Determina l'evento in base alla destinazione
-    switch (Loc) {
+    switch (Loc) {                                                      // Compose the HIT event, what happend.
         case 1:
             event = `${t} on Pitcher`;
             break;
@@ -42,9 +40,8 @@ export function hit(attrib: number): trajectory {
             break;
     }
 
-    // Log del risultato
-   console.log(event);
+   console.log(event);                              // Outut the HIT event, what happend.
 
-    // Restituisci se la palla è al volo e l'evento
+                                                    // Return the Trajectory
     return traj;
 }

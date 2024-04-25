@@ -1,10 +1,10 @@
-export class Squadra {
+export class Team {
     constructor(
-        public nome: string,
-        public lanciatore: number,
-        public battitore: number,
-        public difesa: number,
-        public attacco: number
+        public Name: string,
+        public Pitcher: number,
+        public Batter: number,
+        public Fielder: number,
+        public Runner: number
     ) {}
 }
 

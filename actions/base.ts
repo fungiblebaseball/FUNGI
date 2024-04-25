@@ -1,37 +1,37 @@
 import { base } from "../utils/types"
-
-export function loadBase(basi: base, n: number): [base, number] {
+// Base Advancement 
+export function loadBase(Bases: base, n: number): [base, number] {
     let runs = 0;
 
     for (let i = 0; i < n; i++) {
-        if (basi[3]) {
+        if (Bases[3]) {
             runs++;
-            basi[3] = false;
+            Bases[3] = false;
         } 
-        if (basi[2]) {
-            basi[3] = true;
-            basi[2] = false;
+        if (Bases[2]) {
+            Bases[3] = true;
+            Bases[2] = false;
         } 
-        if (basi[1]) {
-            basi[2] = true; 
-        } else if (!basi[1]) {
-            basi[1] = true;
+        if (Bases[1]) {
+            Bases[2] = true; 
+        } else if (!Bases[1]) {
+            Bases[1] = true;
         }
         if (n > 1) {
-            basi[1] = false;
+            Bases[1] = false;
         } 
     }
 
-    return [basi, runs];
+    return [Bases, runs];
 }
 
-
-export function lob(basi: base): number {
+// Left on Base when the inning ends
+export function lob(Bases: base): number {
     let lob = 0;
-    if(basi[1]){lob++
+    if(Bases[1]){lob++
     }
-    if(basi[2]){lob++
-    }if(basi[3]){lob++
+    if(Bases[2]){lob++
+    }if(Bases[3]){lob++
     }
     return lob;
 }

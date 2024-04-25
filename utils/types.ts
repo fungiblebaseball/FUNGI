@@ -1,12 +1,12 @@
 export type inning = {
-    s: number;
-    h: number;
-    e: number;
-    k: number;
-    b: number;
-    po: number;
-    fo: number;
-    lob: number;
+    s: number;      // Strike
+    h: number;      // Hit
+    e: number;      // Error
+    k: number;      // Strike Out
+    b: number;      // Base on Balls
+    po: number;     // Putted Out by the Defence
+    fo: number;     // Fly Out
+    lob: number;    // Left on Base
 };
 
 export type score = {
@@ -20,9 +20,9 @@ export type score = {
 };
   
 export type base = {
-    1: boolean;
-    2: boolean;
-    3: boolean;
+    1: boolean;     // 1st. Base
+    2: boolean;     // 2st. Base
+    3: boolean;     // 3st. Base
 };
 
 export type trajectory = {
