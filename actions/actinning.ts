@@ -9,7 +9,7 @@ export function actInning(BattingTeam: Team, TeamFielders: Team):inning  {
     let b: base ={1:false,2:false,3:false};
     let inn: inning ={ s:0,h:0,e:0,k:0,b:0,po:0,fo:0,lob:0 };
     while (out < 3) {
-        console.log("In attacco:",BattingTeam.Name, "out:",out);
+        console.log("at Bat:",BattingTeam.Name, "out:",out);
         let play = bat(BattingTeam.Batter, TeamFielders.Pitcher);
         if (typeof play === 'number') {
         switch (play) {
