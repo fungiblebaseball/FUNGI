@@ -1,5 +1,5 @@
 // This Function generate the HIT 
-import { trajectory } from "./types";
+import { trajectory } from "../common/types";
 export function hit(attrib: number): trajectory {
      
     const t :string = Math.random() < 0.5 ? "GroundBall" : "FlyBall";   // The hit is a ground ball or a fly ball

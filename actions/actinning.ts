@@ -1,5 +1,5 @@
-import { Team } from "../utils/class";
-import { inning, base,trajectory } from "../utils/types";
+import { Team } from "../common/class.ts";
+import { inning, base,trajectory } from "../common/types.ts";
 import { bat } from "./bat.ts";
 import { inplay } from "./inplay.ts";
 import { loadBase , lob} from "./base.ts";

@@ -1,6 +1,6 @@
-import { Colored } from "../utils/class.ts";
-import { vari,betaRandom } from "../utils/scrumble.ts";
-import { trajectory, } from "../utils/types.ts";
+import { Colored } from "../common/class.ts";
+import { vari,betaRandom } from "../game_utils/scrumble.ts";
+import { trajectory, } from "../common/types.ts";
 
 export function inplay (runner:number,defence:number,range:trajectory):number | undefined {  
   const P = betaRandom(1.4,0.5,30,70);

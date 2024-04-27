@@ -1,7 +1,7 @@
-import { Colored } from "../utils/class.ts";
-import { hit } from "../utils/hit.ts";
-import { vari,betaRandom } from "../utils/scrumble.ts"
-import { trajectory } from "../utils/types.ts";
+import { Colored } from "../common/class.ts";
+import { hit } from "../game_utils/hit.ts";
+import { vari,betaRandom } from "../game_utils/scrumble.ts"
+import { trajectory } from "../common/types.ts";
 
 export function bat(batter: number, pitcher: number):[number , trajectory]  | number | undefined  {
   

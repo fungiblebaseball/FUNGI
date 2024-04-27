@@ -1,4 +1,4 @@
-import { base } from "../utils/types"
+import { base } from "../common/types"
 // Base Advancement 
 export function loadBase(Bases: base, n: number): [base, number] {
     let runs = 0;

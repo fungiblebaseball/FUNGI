@@ -1,10 +1,20 @@
+export class Player {
+    constructor(
+        public Name: string,
+        public Pitching: number, //Pitching skills
+        public Batting: number,  //Battind skills
+        public Fielding: number, //Glove, fielding skills
+        public Running: number   //Run on base, speeed skills
+    ) {}
+}
+
 export class Team {
     constructor(
         public Name: string,
-        public Pitcher: number,
-        public Batter: number,
-        public Fielder: number,
-        public Runner: number
+        public Pitcher: number, //Pitching skills
+        public Batter: number,  //Battind skills
+        public Fielder: number, //Glove, fielding skills
+        public Runner: number   //Run on base, speeed skills
     ) {}
 }
 

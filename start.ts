@@ -1,6 +1,6 @@
-import { inning, score } from "./utils/types.ts";
+import { inning, score } from "./common/types.ts";
 import { actInning } from "./actions/actinning.ts"
-import { Team } from "./utils/class.ts";
+import { Team } from "./common/class.ts";
 
 // Teams Attributes for TEST
 const TeamA = new Team("Team A", 30, 40, 50, 50);
