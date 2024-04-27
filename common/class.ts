@@ -1,14 +1,16 @@
-export class Roster {
+export class Squad {
+    push: any;
     constructor(
-        public Pitcher: Player,
-        public Catcher: number, //Pitching skills
-        public FstBaseman: number,  //Glove, fielding skills
-        public SndBaseman: number, //Glove, fielding skills
-        public TrdBaseman: number, //Glove, fielding skills
-        public ShortStop: number, //Glove, fielding skills
-        public LOutfielder: number, //Glove, fielding skills
-        public COutfielder: number, //Glove, fielding skills
-        public ROutfielder: number, //Glove, fielding skills
+        public SquadName: string,
+        public Pitcher: Player, //Pitching skills
+        public Catcher: Player, //Pitching skills
+        public FstBaseman: Player,  //Glove, fielding skills
+        public SndBaseman: Player, //Glove, fielding skills
+        public TrdBaseman: Player, //Glove, fielding skills
+        public ShortStop: Player, //Glove, fielding skills
+        public LOutfielder: Player, //Glove, fielding skills
+        public COutfielder: Player, //Glove, fielding skills
+        public ROutfielder: Player, //Glove, fielding skills
     ) {}
 }
 

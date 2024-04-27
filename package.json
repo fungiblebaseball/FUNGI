@@ -3,6 +3,7 @@
     "@types/plotly.js": "^2.29.2"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.42.7",
     "adjectives": "^1.0.2",
     "animals": "^0.0.3"
   }
