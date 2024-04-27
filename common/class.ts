@@ -1,3 +1,17 @@
+export class Roster {
+    constructor(
+        public Pitcher: Player,
+        public Catcher: number, //Pitching skills
+        public FstBaseman: number,  //Glove, fielding skills
+        public SndBaseman: number, //Glove, fielding skills
+        public TrdBaseman: number, //Glove, fielding skills
+        public ShortStop: number, //Glove, fielding skills
+        public LOutfielder: number, //Glove, fielding skills
+        public COutfielder: number, //Glove, fielding skills
+        public ROutfielder: number, //Glove, fielding skills
+    ) {}
+}
+
 export class Player {
     constructor(
         public Name: string,
