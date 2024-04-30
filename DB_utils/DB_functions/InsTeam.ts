@@ -1,6 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
-import {generateTeam} from './../TeamGen.ts';
-import { Squad } from './../../common/class.ts';
+import {generateTeamName} from './../generators/SquadNameGen.ts';
 
 // Configura il client di Supabase con le tue credenziali
 const supabaseUrl = 'https://evcsymvmxpqrfbmhtget.supabase.co';
@@ -9,12 +8,12 @@ const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 // Funzione per inserire i dati della squadra nel database di Supabase
-async function insertTeamIntoSupabase(team: Squad) {
+export async function insertTeamIntoSupabase(team :string) {
   try {
     // Inserisce i dati della squadra nella tabella del database
     const { data, error } = await supabase
-      .from('teams') // Nome della tua tabella nel database di Supabase
-      .insert([team]); // Inserisce la squadra nella tabella
+      .from('Teams') // Nome della tua tabella nel database di Supabase
+      .insert([{name: team}]);; // Inserisce la squadra nella tabella
 
     if (error) {
       throw error;
@@ -27,11 +26,11 @@ async function insertTeamIntoSupabase(team: Squad) {
 }
 
 // Genera la squadra
-generateTeam().then(team => {
-  if (team) {
+let TeamName :string = generateTeamName() 
+console.log(TeamName);
+  if (TeamName) {
     // Inserisce la squadra nel database di Supabase
-    insertTeamIntoSupabase(team);
+  //  insertTeamIntoSupabase(TeamName);
   } else {
-    console.log("Errore durante la generazione della squadra.");
+    console.log("Errore durante la generazione della squadra.", TeamName);
   }
-});

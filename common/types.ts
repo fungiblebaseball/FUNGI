@@ -1,3 +1,9 @@
+export type team = {
+    name: string;      // Strike
+    Team_ID: number;      // Hit
+    Attr_ID: number;      // Error
+
+};
 export type inning = {
     s: number;      // Strike
     h: number;      // Hit

@@ -6,7 +6,7 @@ export async function PlayerGen(): Promise<Player | any>  {
     const name = await generateName(); 
     const attribList = await AttribToArray(4); //
     const PlayerAttrib = new Player(name, attribList[0], attribList[1], attribList[2], attribList[3])  ;  
-   
+    console.log  (PlayerAttrib.Name);
   return (PlayerAttrib);
     
   } catch (error) {

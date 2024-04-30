@@ -1,5 +1,5 @@
 import { Colored } from "../common/class.ts";
-import { vari,betaRandom } from "../game-utils/scrumble.ts";
+import { vari,betaRandom } from "../game_utils/scrumble.ts";
 import { trajectory, } from "../common/types.ts";
 
 export function inplay (runner:number,defence:number,range:trajectory):number | undefined {  
