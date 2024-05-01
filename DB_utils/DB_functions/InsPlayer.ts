@@ -10,11 +10,11 @@ const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 // Funzione per generare attributes
-export async  function InsertPlayer(name:string) {
+export async  function InsertPlayer(name:string, role:string) {
     try {
         const { data: nameID, error: attribError } = await supabase
             .from('Players')
-            .insert([{name: name }]);
+            .insert([{pname: name , role: role}]);
         
         if (nameID==0) {
             throw attribError;
@@ -26,5 +26,5 @@ export async  function InsertPlayer(name:string) {
         throw error;
     }
 }
-const NameGen = await generateName(); 
-InsertPlayer(NameGen);
+//const NameGen = await generateName(); 
+//InsertPlayer(NameGen);
