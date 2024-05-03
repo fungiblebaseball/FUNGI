@@ -1,5 +1,32 @@
+export class Player {
+    constructor(
+        public Name: string,
+        public Role: string,
+        public LineUp: number,
+        public Pitching: number, //Pitching skills
+        public Batting: number,  //Battind skills
+        public Fielding: number, //Glove, fielding skills
+        public Running: number   //Run on base, speeed skills
+    ) {}
+}
+
+export class Squadz {
+    constructor(
+        public SquadName: string,
+        public players: Player[]
+    ) {}
+
+    findPlayerByLineupz(lineupNumber: number): Player | undefined {
+        return this.players.find(player => player.LineUp === lineupNumber);
+    }
+
+    findPlayerByRolez(role: string): Player | undefined {
+        return this.players.find(player => player.Role === role);
+    }
+}
+
 export class Squad {
-    push: any;
+    //push: any;
     constructor(
         public SquadName: string,
         public Pitcher: Player, //Pitching skills
@@ -11,26 +38,55 @@ export class Squad {
         public LOutfielder: Player, //Glove, fielding skills
         public COutfielder: Player, //Glove, fielding skills
         public ROutfielder: Player, //Glove, fielding skills
-    ) {}
+    ) {
+        
+    }
+    findPlayerByLineup(lineupNumber: number): Player  {
+        // Creiamo un array con tutti i giocatori della squadra
+        const players: Player[] = [
+            this.Pitcher,
+            this.Catcher,
+            this.FstBaseman,
+            this.SndBaseman,
+            this.TrdBaseman,
+            this.ShortStop,
+            this.LOutfielder,
+            this.COutfielder,
+            this.ROutfielder
+        ];
+        
+        // Cerchiamo il giocatore con il numero di lineup specificato
+        return players.find(player => player.LineUp === lineupNumber)||new Player("Default", "Default",0, 0, 0, 0, 0);
+    }
+
+    findPlayerByRole(role: string): Player {
+        const players: Player[] = [
+            this.Pitcher,
+            this.Catcher,
+            this.FstBaseman,
+            this.SndBaseman,
+            this.TrdBaseman,
+            this.ShortStop,
+            this.LOutfielder,
+            this.COutfielder,
+            this.ROutfielder
+        ];
+        const player = players.find(player => player.Role === role);
+
+        // Se non viene trovato nessun giocatore, restituisci un giocatore di default
+        return player || new Player("Default", "Default",0, 0, 0, 0, 0);
+    }
 }
 
-export class Player {
-    constructor(
-        public Name: string,
-        public Pitching: number, //Pitching skills
-        public Batting: number,  //Battind skills
-        public Fielding: number, //Glove, fielding skills
-        public Running: number   //Run on base, speeed skills
-    ) {}
-}
+
 
 export class Team {
     constructor(
         public Name: string,
-        public Pitcher: number, //Pitching skills
-        public Batter: number,  //Battind skills
-        public Fielder: number, //Glove, fielding skills
-        public Runner: number   //Run on base, speeed skills
+        public Pitcher: Player, //Pitching skills
+        public Batter: Player,  //Battind skills
+        public Fielder: Player, //Glove, fielding skills
+        public Runner: Player   //Run on base, speeed skills
     ) {}
 }
 

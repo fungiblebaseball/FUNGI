@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
-import {generateTeamName} from './../generators/SquadNameGen.ts';
+import {generateTeamName} from '../../generators/SquadNameGen.ts';
 
 // Configura il client di Supabase con le tue credenziali
 const supabaseUrl = 'https://evcsymvmxpqrfbmhtget.supabase.co';

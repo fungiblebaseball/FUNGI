@@ -13,6 +13,7 @@ export type inning = {
     po: number;     // Putted Out by the Defence
     fo: number;     // Fly Out
     lob: number;    // Left on Base
+    lab: number;    // Last at the bat
 };
 
 export type score = {
@@ -23,6 +24,7 @@ export type score = {
     b: number;
     fo: number;
     po: number;
+    lab: number;    // Last at the bat
 };
   
 export type base = {
@@ -34,5 +36,5 @@ export type base = {
 export type trajectory = {
     B: boolean;
     T: string;
-    L: number;
+    L: string;
 };

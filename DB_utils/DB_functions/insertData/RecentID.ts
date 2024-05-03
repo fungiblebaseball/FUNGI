@@ -49,12 +49,12 @@ export async function correlateTeamsAndPlayers() {
     if (lastTeam && lastPlayer && lastAttributes ) {
         
             const teamIds =parseInt(lastTeam[0].team_id, 10 );
-            console.log(teamIds);
+            //console.log(teamIds);
             const attributesId  =parseInt(lastAttributes[0].pattribute_id, 10) ; 
-            console.log(attributesId);
+            //console.log(attributesId);
             const playerIds =parseInt(lastPlayer[0].player_id, 10);  
-            console.log(playerIds);
-            updatePlayerAttributes(playerIds, attributesId, teamIds);  // Aggiorna il giocatore con ID 1 impostando l'ID degli attributi a 100
+            //console.log(playerIds);
+            await updatePlayerAttributes(playerIds, attributesId, teamIds);  // Aggiorna il giocatore con ID 1 impostando l'ID degli attributi a 100
     
         }
     

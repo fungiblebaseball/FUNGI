@@ -1,20 +1,24 @@
 import { PlayerGen } from './generators/PlayerGen.ts';
 import { Squad } from "../common/class.ts"; 
-import { generateTeamName } from './generators/SquadNameGen.ts';
+import { generatePlayer } from './DB_functions/readData/PlayerForRole.ts';
+import { getTeamName }from './DB_functions/readData/nameForId.ts';
 
-export async function generateTeam() {
+//const T= 115;
+//const T= 116;
+//const pos= 'P';
+export async function generateTeam(T:number) {
   try {
-    const TeamName = await generateTeamName(); // Genera il nome del team
-    const Pitcher = await PlayerGen();
-    const Catcher = await PlayerGen()|| null;;
-    const fstBaseman = await PlayerGen()|| null;;
-    const sndBaseman = await PlayerGen()|| null;;
-    const trdBaseman = await PlayerGen()|| null;;
-    const shortStop = await PlayerGen()|| null;;
-    const lOutfielder = await PlayerGen()|| null;;
-    const cOutfielder = await PlayerGen()|| null;;
-    const rOutfielder = await PlayerGen()|| null;;
-
+    const TeamName = await getTeamName(T); // Genera il nome del team
+    const Pitcher = await generatePlayer ('P',T);
+    const Catcher = await generatePlayer ('C',T);
+    const fstBaseman = await generatePlayer ('1B',T);
+    const sndBaseman = await generatePlayer ('2B',T);
+    const trdBaseman = await generatePlayer ('3B',T);
+    const shortStop = await generatePlayer ('SS',T);
+    const lOutfielder = await generatePlayer ('LF',T);
+    const cOutfielder = await generatePlayer ('CF',T);
+    const rOutfielder = await generatePlayer ('RF',T);
+if(TeamName&&Pitcher&&Catcher&&fstBaseman&&sndBaseman&&trdBaseman&&shortStop&&lOutfielder&&cOutfielder&&rOutfielder){
     const squad = new Squad(
       TeamName,
       Pitcher,
@@ -28,17 +32,21 @@ export async function generateTeam() {
       rOutfielder
     );
 
-    return squad;
+    return squad; 
+   }
   } catch (error) {
     console.error('Error during team generation:', error);
     return null; // In caso di errore, restituisco null
   }
 }
 
-generateTeam().then(squad => {
+export async function GiveTeam(T:number) : Promise  <Squad | any> {
+  
+  await generateTeam(T).then(squad => {
   if (squad) {
     console.log("Squadra generata:", squad);
   } else {
     console.log("Errore durante la generazione della squadra.");
   }
-});
+}); 
+}

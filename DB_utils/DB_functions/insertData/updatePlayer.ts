@@ -16,7 +16,7 @@ const updatePlayerAttributes = async (playerId: number, teamId: number, attribut
             throw error;
         }
 
-        console.log('Aggiornamento riuscito:', data);
+        console.log('Aggiornamento riuscito:');
         return data;
     } catch (error) {
         console.error('Errore durante l\'aggiornamento:', error.message);
@@ -48,11 +48,11 @@ const { data: lastTeam } = await supabase
     
         //const teamIds =parseInt(lastTeam[0].team_id, 10) ;
         const teamIds =parseInt(lastTeam[0].team_id, 10 );
-        console.log(teamIds);
+        //console.log(teamIds);
         const attributesId  =parseInt(lastAttributes[0].pattribute_id, 10) ; 
-        console.log(attributesId);
+        //console.log(attributesId);
         const playerIds =parseInt(lastPlayer[0].player_id, 10);  
-        console.log(playerIds);
+        //console.log(playerIds);
         updatePlayerAttributes(playerIds, attributesId, teamIds);  // Aggiorna il giocatore con ID 1 impostando l'ID degli attributi a 100
 
     }
