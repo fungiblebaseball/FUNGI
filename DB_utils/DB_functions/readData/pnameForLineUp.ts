@@ -13,7 +13,7 @@ export async function CallBatter(lineup: number, team_id: number): Promise<Playe
     // Ottieni i dati del giocatore dal database Supabase
     const { data, error } = await supabase
         .from('Players')
-        .select('pname, lineup, role, pattrib_id')
+        .select('player_id, pname, lineup, role, pattrib_id, pstats_id')
         .eq('lineup', as)
         .eq('team_id', team_id)
         .single();
@@ -44,7 +44,7 @@ export async function CallBatter(lineup: number, team_id: number): Promise<Playe
     }
     const { pitching, batting, fielding, running } = attributesData;
     console.log('Loading Attributes:');
-    const t= new Player(data.pname, data.role, data.lineup, pitching, batting, fielding, running);
+    const t= new Player(data.player_id, data.pname, data.role, data.lineup, data.pstats_id, pitching, batting, fielding, running);
     console.log('Player:',t,);
     return t;
 }

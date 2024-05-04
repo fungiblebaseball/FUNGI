@@ -1,7 +1,7 @@
 import { PlayerGen } from './generators/PlayerGen.ts';
 import { Squad } from "../common/class.ts"; 
-import { generatePlayer } from './DB_functions/readData/PlayerForRole.ts';
-import { getTeamName }from './DB_functions/readData/nameForId.ts';
+import { CallPlayer } from './DB_functions/readData/PlayerForRole.ts';
+import { getTeamName }from './DB_functions/readData/tnameForId.ts';
 
 //const T= 115;
 //const T= 116;
@@ -9,15 +9,15 @@ import { getTeamName }from './DB_functions/readData/nameForId.ts';
 export async function generateTeam(T:number) {
   try {
     const TeamName = await getTeamName(T); // Genera il nome del team
-    const Pitcher = await generatePlayer ('P',T);
-    const Catcher = await generatePlayer ('C',T);
-    const fstBaseman = await generatePlayer ('1B',T);
-    const sndBaseman = await generatePlayer ('2B',T);
-    const trdBaseman = await generatePlayer ('3B',T);
-    const shortStop = await generatePlayer ('SS',T);
-    const lOutfielder = await generatePlayer ('LF',T);
-    const cOutfielder = await generatePlayer ('CF',T);
-    const rOutfielder = await generatePlayer ('RF',T);
+    const Pitcher = await CallPlayer ('P',T);
+    const Catcher = await CallPlayer ('C',T);
+    const fstBaseman = await CallPlayer ('1B',T);
+    const sndBaseman = await CallPlayer ('2B',T);
+    const trdBaseman = await CallPlayer ('3B',T);
+    const shortStop = await CallPlayer ('SS',T);
+    const lOutfielder = await CallPlayer ('LF',T);
+    const cOutfielder = await CallPlayer ('CF',T);
+    const rOutfielder = await CallPlayer ('RF',T);
 if(TeamName&&Pitcher&&Catcher&&fstBaseman&&sndBaseman&&trdBaseman&&shortStop&&lOutfielder&&cOutfielder&&rOutfielder){
     const squad = new Squad(
       TeamName,

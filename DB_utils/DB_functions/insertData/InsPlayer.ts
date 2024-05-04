@@ -10,11 +10,11 @@ const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 // Funzione per generare attributes
-export async  function InsertPlayer(name:string, role:string, LineUp:number) {
+export async  function InsertPlayer(name:string, role:string, LineUp:number, pstat:number) {
     try {
         const { data: nameID, error: attribError } = await supabase
             .from('Players')
-            .insert([{pname: name , role: role , lineup:LineUp}]);
+            .insert([{pname: name , role: role , lineup:LineUp, pstats_id:pstat}]);
         
         if (nameID==0) {
             throw attribError;

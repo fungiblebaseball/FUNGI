@@ -12,7 +12,7 @@ import { getTeamName } from "./DB_utils/DB_functions/readData/tnameForId.ts";
 //const TeamB = new Team(S2.SquadName, S2.Pitcher, S2.ROutfielder, S2.ShortStop, S2.LOutfielder);
 
 // Game init.
-async function game(TeamA: number, TeamB: number):Promise<string | [string,string,string, inning, inning]> {
+export async function game(TeamA: number, TeamB: number):Promise<string | [string,string,string, inning, inning]> {
     let punteggioA = 0;
     let punteggioB = 0;
     let innA  ={ s:0,h:0,e:0,k:0,b:0,fo:0,po:0,lob:0,lab:0 };
@@ -50,7 +50,7 @@ let ab2 : number = 1 ;
     }
 }
 
-const result = await game(115, 116);
+const result = await game(127, 128);
 
 
 if (typeof result !== 'string') { // Verify if result is a tuple

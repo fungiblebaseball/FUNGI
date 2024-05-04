@@ -1,12 +1,13 @@
 import { generateTeamName } from '../generators/SquadNameGen.ts';
 import { InsertPlayer } from './insertData/InsPlayer.ts';
-import { createClient } from '@supabase/supabase-js';
 import { AttribToArray } from '../generators/AttribGenArray.ts';
 import { createAttributes } from './insertData/InsAttrib.ts';
 import { insertTeamIntoSupabase } from './insertData/InsTeam.ts';
+import { createClient } from '@supabase/supabase-js';
 
 import { correlateTeamsAndPlayers } from './insertData/RecentID.ts';
 import { generateName } from '../generators/NamesGen.ts';
+import { pstatGen } from '../generators/pstatGenArray.ts';
 
 const supabaseUrl = 'https://evcsymvmxpqrfbmhtget.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV2Y3N5bXZteHBxcmZibWh0Z2V0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQwODUyNDgsImV4cCI6MjAyOTY2MTI0OH0.P96yvOfOYAsRJ1YzAUOsYejBw83uwhHEYTIyhnrwDCQ';
@@ -28,10 +29,11 @@ for (let i = 0; i < y; i++) {
 const attribList = await AttribToArray(4,roster[i]);                                  // Generate and insert in table: 
 await createAttributes (attribList[0],attribList[1],attribList[2],attribList[3]); //.from('PlayerAttributes'); 
                                                                             //.insert([{pitching: attribList[0], batting: attribList[1], fielding: attribList[2], running: attribList[3] }]);
-
+ 
+const pstat = await pstatGen(); 
 const NameGen = await generateName();   // Generate and insert in table: 
-                                        //.from('Players'); 
-await InsertPlayer(NameGen,roster[i],l++);                  //.insert([{name: name}]);
+                                        //.from('Players');                                        
+await InsertPlayer(NameGen,roster[i],l++,pstat);                  //.insert([{name: name}]);
 
 await correlateTeamsAndPlayers()
 // Ottieni l'ID dell'ultima riga inserita nella tabella Teams

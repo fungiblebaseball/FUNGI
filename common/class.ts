@@ -1,8 +1,10 @@
 export class Player {
     constructor(
+        public pid: number,
         public Name: string,
         public Role: string,
-        public LineUp: number,
+        public LineUp: number, 
+        public pstats_id: number,
         public Pitching: number, //Pitching skills
         public Batting: number,  //Battind skills
         public Fielding: number, //Glove, fielding skills
@@ -56,7 +58,7 @@ export class Squad {
         ];
         
         // Cerchiamo il giocatore con il numero di lineup specificato
-        return players.find(player => player.LineUp === lineupNumber)||new Player("Default", "Default",0, 0, 0, 0, 0);
+        return players.find(player => player.LineUp === lineupNumber)||new Player(0,"Default", "Default",0,0, 0, 0, 0, 0);
     }
 
     findPlayerByRole(role: string): Player {
@@ -74,7 +76,7 @@ export class Squad {
         const player = players.find(player => player.Role === role);
 
         // Se non viene trovato nessun giocatore, restituisci un giocatore di default
-        return player || new Player("Default", "Default",0, 0, 0, 0, 0);
+        return player || new Player(0,"Default", "Default",0, 0,0, 0, 0, 0);
     }
 }
 
