@@ -26,6 +26,7 @@ export async function statUpd(pstats_id, data) {
     // Calculate new stats
     let updateObject = data.split(';').reduce((acc, pair) => {
       const [field, increment] = pair.split(',');
+      console.log(field);
       const currentVal = currentStats[field] || 0;
       acc[field] = currentVal + parseInt(increment, 10);
       return acc;
@@ -41,7 +42,7 @@ export async function statUpd(pstats_id, data) {
       console.error('Error updating player stats:', updateError);
       return null;
     } else {
-      console.log('Player stats updated:', updatedRows);
+      console.log('Player stats updated:', pstats_id);
       return updatedRows;
     }
   } catch (error) {
@@ -51,12 +52,13 @@ export async function statUpd(pstats_id, data) {
 }
 
 // Example usage
-//statUpd(22, "ab,1;bb,1;k,1")
-  //.then(updatedRows => {
-   // if (updatedRows) {
-   //   console.log('Update successful:', updatedRows);
- //   }
- // })
- // .catch(error => {
-  //  console.error('Failed to update stats:', error);
- // });
+/*statUpd(55, "ab,1;bb,1;k,100")
+  .then(updatedRows => {
+    if (updatedRows) {
+      console.log('Update successful:', updatedRows);
+    }
+  })
+  .catch(error => {
+    console.error('Failed to update stats:', error);
+  });
+  */

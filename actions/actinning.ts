@@ -12,10 +12,12 @@ export async function actInning(TeamBy: number,ABat:number, TeamDef:number) : (P
     let out = 0;
     let b: base ={1:false,2:false,3:false};
     let inn: inning ={ s:0,h:0,e:0,k:0,b:0,po:0,fo:0,lob:0,lab:aaba };
+    
     let pitcher = await CallPlayer('P', TeamDef);
     if (!pitcher || (pitcher == null)) { 
         console.error('error')} 
     else {
+    
     const Py=  new Player(pitcher?.pid,pitcher?.Name,pitcher?.Role,pitcher?.LineUp,pitcher?.pstats_id,pitcher?.Pitching,pitcher?.Batting,pitcher?.Fielding,pitcher?.Running);
     console.log("Pitcher ",Py.Name, " on the mound:",out);
     while (out < 3) {
@@ -24,9 +26,10 @@ export async function actInning(TeamBy: number,ABat:number, TeamDef:number) : (P
         if (!batter|| (batter==null)) { 
             console.error('error');
         } 
+
         else { 
             const Bt=  new Player(batter.pid,batter.Name,batter.Role,batter.LineUp,batter.pstats_id,batter.Pitching,batter.Batting,batter.Fielding,batter.Running);
-            inn.lab =Bt.LineUp;
+            inn.lab = Bt.LineUp;
             console.log ("at Bat:",(Bt.Name), 'out:',(out));
 
             let play = bat(Bt.Batting, Py.Pitching);
@@ -34,7 +37,6 @@ export async function actInning(TeamBy: number,ABat:number, TeamDef:number) : (P
             if (typeof play === 'number') {
                 switch (play) {
                 case 0:                       //////////////    K
-                    
                     out++; 
                     inn.k++;
                     inn.lab++;
@@ -53,43 +55,47 @@ export async function actInning(TeamBy: number,ABat:number, TeamDef:number) : (P
                 break;
                 } 
             } 
-            else if (Array.isArray(play) && typeof play[0] === 'number' ){
+            else if (Array.isArray(play) ){  //&& typeof play[0] === 'number' ){
                     // If play = tuple that include a num 
                     const num = play[0];
                     const trajectoryData :trajectory = play[1];
                     switch (num) {
             
-                    case 3: 
-                    let fielderF = await CallPlayer('P', TeamDef);
+                    case 3:                             ////////////    FLY Out
+                        let fielderF = await CallPlayer(trajectoryData.L, TeamDef);
                         
                         if (!fielderF || (fielderF == null)) { 
                             console.error('error');
                         } 
                         else { 
+                            out++; inn.fo++;inn.lab++;
                             const FiF=  new Player(fielderF.pid,fielderF.Name,fielderF.Role,fielderF.LineUp,fielderF.pstats_id,fielderF.Pitching,fielderF.Batting,fielderF.Fielding,fielderF.Running);
-                            console.log("Fielder ",(FiF.Name),(FiF.Role), " nearby the Play:",(out));
-                                                    ////////////    FLY Out
-                            await statUpd(Bt.pstats_id, "ab,1;") 
-                        out++; inn.fo++;inn.lab++; //console.log("lob",inn.lob);   
-                    break;
-                }
+                            console.log("Fielder ",(FiF.Name),(FiF.Role), " Makes the Play!!:",(out));
+                            await statUpd(FiF.pstats_id, "fo,1")   ;                    
+                            await statUpd(Bt.pstats_id, "ab,1");
+                         //console.log("lob",inn.lob);   
+                        break;
+                            }
                     case 4:                         // /////////    HIT
-                        let [nb, sc] = loadBase(b, 1);inn.lab++;
+                        let [nb, sc] = loadBase(b, 1);
                         await statUpd(Bt.pstats_id, "ab,1;h,1") 
-                        inn.h++;
+                        await statUpd(Py.pstats_id, "vsbat,1;ph,1")
+                        inn.h++;inn.lab++;
                     break;
 
                     case 1:                         // /////////    IN PLAY
-                        let fielder = await CallPlayer('P', TeamDef);
+                        let trajectoryData1:trajectory = play[1];
+                        let fielder = await CallPlayer(trajectoryData.L, TeamDef);
                         
                         if (!fielder || (fielder == null)) { 
                             console.error('error');
                         } 
                         else { 
+                            out++; inn.fo++;inn.lab++;
                             const Fi=  new Player(fielder.pid,fielder.Name,fielder.Role,fielder.LineUp,fielder.pstats_id,fielder.Pitching,fielder.Batting,fielder.Fielding,fielder.Running);
-                            console.log("Fielder ",(Fi.Name),(Fi.Role), " nearby the Play:",(out));
-                            
+                            console.log("Fielder ",(Fi.Name),(Fi.Role), " nearby the Play!!:",(out));
                             let g = inplay(Bt.Running,Fi.Fielding,trajectoryData)
+                            
                             switch (g) {
                             case 5:                 //////////////  HIT
                                 let [nb, sc] = loadBase(b, 1); //new bases loads, runs socred
@@ -102,13 +108,13 @@ export async function actInning(TeamBy: number,ABat:number, TeamDef:number) : (P
                                 out++; inn.po++;inn.lab++; //console.log("lob",b);  
                                 await statUpd(Bt.pstats_id, "ab,1") ;
                                 await statUpd(Fi.pstats_id, "fo,1;fassist,1")  ; 
-                                await statUpd(Py.pstats_id, "vsbat,1;") ; 
+                                await statUpd(Py.pstats_id, "vsbat,1") ; 
                             break;
                             case 7:                 //////////////  FLY OUT
                                 out++; inn.fo++;inn.lab++; //console.log("lob",b); 
                                 await statUpd(Bt.pstats_id, "ab,1"); 
-                                await statUpd(Fi.pstats_id, "fo,1;") ;
-                                await statUpd(Py.pstats_id, "vsbat,1;") ; 
+                                await statUpd(Fi.pstats_id, "fo,1") ;
+                                await statUpd(Py.pstats_id, "vsbat,1") ; 
                             break;
 
                             case 8:                 ////////////    Error

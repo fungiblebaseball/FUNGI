@@ -14,38 +14,39 @@ export function hit(attrib: number): trajectory {
             break;                              
         case 2:
             comment = `${t} Right to the Catcher`;
-            traj[2]='C';
+            traj.L='C';
             break;
         case 3:
             comment = `${t} for the 1st Baseman`;
-            traj[2]='1B';
+            traj.L='1B';
             break;
         case 4:
             comment = `${t} for the 2nd Baseman`;
-            traj[2]='2B';
+            traj.L='2B';
             break;
         case 5:
             comment = `${t} to the 3rd Baseman`;
-            traj[2]='3B';
+            traj.L='3B';
             break;
         case 6:
             comment = `${t} on the ShortStop`;
-            traj[2]='SS';
+            traj.L='SS';
             break;
         case 7:
             comment = `${t} for the LFielder`;
-            traj[2]='LF';
+            traj.L='LF';
             break;
         case 8:
             comment = `${t} to the CFielder`;
-            traj[2]='CF';
+            traj.L='CF';
             break;
         case 9:
             comment = `${t} to the RFielder`;
-            traj[2]='RF';
+            traj.L='RF';
             break;
         case 10:
             comment = `${t} to the moon`;
+            traj.L='CF';
             break;
     }
 
